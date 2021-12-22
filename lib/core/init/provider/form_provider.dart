@@ -10,10 +10,4 @@ class FormProvider extends ChangeNotifier {
     APIFormService apiFormService = getIt<APIFormService>();
     return await apiFormService.fetchForms();
   }
-
-  test() async {
-    print("test");
-    await getForms();
-    notifyListeners();
-  }
 }

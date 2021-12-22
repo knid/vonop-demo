@@ -1,4 +1,5 @@
 class Form {
+  String formName;
   String? firstName;
   String? lastName;
   String? username;
@@ -15,6 +16,7 @@ class Form {
   String? password;
 
   Form({
+    required this.formName,
     this.firstName,
     this.lastName,
     this.username,
@@ -32,35 +34,63 @@ class Form {
   });
 
   factory Form.fromJson(Map<String, dynamic> json) => Form(
-        firstName: json['firstName'],
-        lastName: json['lastName'],
+        formName: json['form_name'],
+        firstName: json['first_name'],
+        lastName: json['last_name'],
         username: json['username'],
         email: json['email'],
-        phoneNumber: json['phoneNumber'],
+        phoneNumber: json['phone_number'],
         birthday: json['birthday'],
         gender: json['gender'],
-        identityId: json['identityId'],
+        identityId: json['identity_id'],
         country: json['country'],
         city: json['city'],
         district: json['district'],
-        postCode: json['postCode'],
+        postCode: json['post_code'],
         address: json['address'],
         password: json['password'],
       );
 
   Map<String, Object?> toJson() => {
-        "firstName": firstName,
-        "lastName": lastName,
+        "first_name": firstName,
+        "last_name": lastName,
         "username": username,
         "email": email,
-        "phoneNumber": phoneNumber,
+        "phone_number": phoneNumber,
         "gender": gender,
-        "identityId": identityId,
+        "identity_id": identityId,
         "country": country,
         "city": city,
         "district": district,
-        "postCode": postCode,
+        "post_code": postCode,
         "address": address,
         "password": password
       };
+
+  String? get fullName {
+    if (firstName == null || lastName == null) {
+      return null;
+    }
+    return "$firstName $lastName";
+  }
+
+  String? get loc {
+    if (country == null ||
+        city == null ||
+        district == null ||
+        postCode == null) {
+      return null;
+    }
+  }
+
+  List<String?> get structure => [
+        fullName,
+        username,
+        email,
+        phoneNumber,
+        birthday,
+        gender,
+        identityId,
+        loc,
+      ];
 }

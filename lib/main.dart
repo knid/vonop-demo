@@ -12,8 +12,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeApp();
 
-  APIFormService().fetchForms();
-
   runApp(
     MultiProvider(
       providers: [...ApplicationProvider.dependItems],

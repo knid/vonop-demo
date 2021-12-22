@@ -145,7 +145,6 @@ class FormsPage extends StatelessWidget {
                     text: "Rastgele Form",
                     icon: const Icon(Icons.shuffle, color: Colors.white),
                     onPress: () {
-                      context.read<FormProvider>().test();
                       print("test");
                     },
                   ),
@@ -161,9 +160,9 @@ class FormsPage extends StatelessWidget {
               Expanded(
                 child: ListView(
                   children: List.generate(
-                    3,
-                    (index) =>
-                        formCard(context, formId: "formId", index: index),
+                    snapshot.data!.length,
+                    (index) => formCard(context,
+                        form: snapshot.data![index], index: index),
                   ),
                 ),
               ),

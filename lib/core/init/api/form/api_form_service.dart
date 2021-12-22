@@ -17,6 +17,7 @@ class APIFormService {
         }
       }
     }
+    print(forms[0].firstName);
     return forms;
   }
 
