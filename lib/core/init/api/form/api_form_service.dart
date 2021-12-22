@@ -1,18 +1,23 @@
-import '../../../../../core/constants/app/app_constants.dart';
+import '../../network/network_manager.dart';
+
 import '../../../../../models/form/form.dart';
 
 class APIFormService {
-  static const endPoint = "/forms";
-  static const fullPath = AppConstants.API_BASE_URL + endPoint;
+  static const endPoint = "/user/forms/";
 
   Future<List<Form>> fetchForms() async {
-    // await http.get(
-    //   Uri.parse(fullPath),
-    //   headers: {
-    //     "Authorization": "Token aaa",
-    //   },
-    // );
-    return [];
+    List<Form> forms = [];
+    final response = (await NetworkManager.instance.dio.get(endPoint));
+    if (response.statusCode == 200) {
+      final data = response.data;
+      if (data is List) {
+        for (var i in data) {
+          final Form form = Form.fromJson(i);
+          forms.add(form);
+        }
+      }
+    }
+    return forms;
   }
 
   Future<Form> addForm(Form form) {

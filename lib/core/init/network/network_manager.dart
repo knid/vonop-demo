@@ -4,18 +4,17 @@ import 'package:dio/dio.dart';
 
 class NetworkManager {
   static NetworkManager? _instance;
-  static NetworkManager? get instance {
+  static NetworkManager get instance {
     _instance ??= NetworkManager._init();
-    return _instance;
+    return _instance!;
   }
 
-  Dio? dio;
+  late final Dio dio;
   NetworkManager._init() {
     final baseOptions = BaseOptions(
-        baseUrl: 'http://192.168.1.20:9000/',
+        baseUrl: 'http://192.168.1.20:9000',
         headers: {
-          'Authorization':
-              'LocaleManager.instance.getStringValue(PreferencesKeys.TOKEN)'
+          'Authorization': 'Token 888230bb7ea2624a4c2e41c3c09b74bb8ab479f6'
         });
     dio = Dio(baseOptions);
   }

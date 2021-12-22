@@ -31,7 +31,7 @@ class Form {
     this.password,
   });
 
-  factory Form.fromJson(Map<String, String?> json) => Form(
+  factory Form.fromJson(Map<String, dynamic> json) => Form(
         firstName: json['firstName'],
         lastName: json['lastName'],
         username: json['username'],
