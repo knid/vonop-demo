@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>65038630093-u7qrqhpnv5h8u62k4jsu0mb11sonb6vv.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.65038630093-u7qrqhpnv5h8u62k4jsu0mb11sonb6vv</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>65038630093-nruodslli74p28r3dfa8sm0lf81mhm4h.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDFueucRW-lw1v8Mpo8ZMTX5AavvN7arx8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>65038630093</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.sinan.vonop</string>
+	<key>PROJECT_ID</key>
+	<string>vonop-demo</string>
+	<key>STORAGE_BUCKET</key>
+	<string>vonop-demo.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:65038630093:ios:91ba625303ec23bb4afd84</string>
+</dict>
+</plist>
