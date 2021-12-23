@@ -67,27 +67,6 @@ Widget formCard(context,
                   overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.montserrat(color: Colors.grey),
                 ),
-            //     Text(
-            //       "Sinan Kanidağlı",
-            //       overflow: TextOverflow.ellipsis,
-            //       style: GoogleFonts.montserrat(
-            //           color: Colors.grey, fontWeight: FontWeight.w600),
-            //     ),
-            // Text(
-            //   "SinanK0",
-            //   overflow: TextOverflow.ellipsis,
-            //   style: GoogleFonts.montserrat(color: Colors.grey),
-            // ),
-            // Text(
-            //   "sinan_kanidagli@hotmail.com",
-            //   overflow: TextOverflow.ellipsis,
-            //   style: GoogleFonts.montserrat(color: Colors.grey),
-            // ),
-            // Text(
-            //   "+90 536 491 42 79 ....",
-            //   overflow: TextOverflow.ellipsis,
-            //   style: GoogleFonts.montserrat(color: Colors.grey),
-            // ),
             const SizedBox(
               height: kDefaultPadding / 2,
             ),

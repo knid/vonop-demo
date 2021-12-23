@@ -17,7 +17,7 @@ class Initialize {
 
     _notificationService = getIt<FirebasePushNotificationService>();
 
-    _notificationService.addListener((msg) => Navigator.push(
+    _notificationService.addListener((RemoteMessage? msg) => Navigator.push(
         context, MaterialPageRoute(builder: (context) => WelcomePage())));
 
     _notificationService.addListener(print);

@@ -5,8 +5,8 @@ import '../../../view/pages/forms_page/forms_page.dart';
 import '../../../view/pages/home_page/home_page.dart';
 
 class PageProvider extends ChangeNotifier {
-  final PageController controller = PageController(initialPage: 1);
-  String _routeName = FormsPage.routeName;
+  final PageController controller = PageController(initialPage: 0);
+  String _routeName = HomePage.routeName;
 
   String get routeName => _routeName;
 

@@ -5,6 +5,7 @@ import '../home_page/home_page.dart';
 import '../forms_page/forms_page.dart';
 import '../account_page/account_page.dart';
 import '../../ui/widgets/app_bar.dart';
+import '../../ui/widgets/keep_alive_page.dart';
 import '../../ui/widgets/floating_action_button.dart';
 import '../../../core/init/provider/page_provider.dart';
 import '../../../core/constants/view/view_constants.dart';
@@ -62,9 +63,9 @@ class MainPage extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           controller: pageProvider.controller,
           children: [
-            const HomePage(),
-            const FormsPage(),
-            const AccountsPage(),
+            const KeepAlivePage(child: HomePage()),
+            const KeepAlivePage(child: FormsPage()),
+            const KeepAlivePage(child: AccountsPage()),
             Container(
               color: kPrimaryColor,
             )

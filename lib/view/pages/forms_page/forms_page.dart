@@ -18,7 +18,7 @@ class FormsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     FormProvider formProvider = context.watch<FormProvider>();
     return FutureBuilder<List<model.Form>>(
-      future: formProvider.getForms(),
+      future: formProvider.getAll(),
       builder: (context, AsyncSnapshot<List<model.Form>> snapshot) {
         if (snapshot.hasError) {
           //TODO:check error
@@ -167,8 +167,12 @@ class FormsPage extends StatelessWidget {
                 ),
               ),
             if (!snapshot.hasData)
-              const CircularProgressIndicator(
-                color: kPrimaryColor,
+              const Expanded(
+                child: Center(
+                  child: CircularProgressIndicator(
+                    color: kPrimaryColor,
+                  ),
+                ),
               ),
           ]),
         );

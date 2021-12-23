@@ -70,7 +70,7 @@ class FirebasePushNotificationService implements BasePushNotificationService {
     listeners.add(listener);
   }
 
-  void _listen(RemoteMessage message) {
+  void _listen(RemoteMessage? message) {
     for (var func in listeners) {
       func(message);
     }

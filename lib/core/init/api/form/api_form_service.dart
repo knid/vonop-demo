@@ -1,14 +1,29 @@
+import '../../../base/service/api/base_api_data_service.dart';
+import '../../../constants/enums/http_response_status_enum.dart';
 import '../../network/network_manager.dart';
-
 import '../../../../../models/form/form.dart';
+import '../../../extension/http_response_status_extension.dart';
 
-class APIFormService {
+class APIFormService implements BaseAPIDataService<Form> {
   static const endPoint = "/user/forms/";
 
-  Future<List<Form>> fetchForms() async {
+  @override
+  Future<Form> add(Form data) {
+    // TODO: implement add
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> delete(String id) {
+    // TODO: implement delete
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Form>> fetchAll() async {
     List<Form> forms = [];
     final response = (await NetworkManager.instance.dio.get(endPoint));
-    if (response.statusCode == 200) {
+    if (response.statusCode == HttpResponeStatus.OK.code) {
       final data = response.data;
       if (data is List) {
         for (var i in data) {
@@ -21,15 +36,9 @@ class APIFormService {
     return forms;
   }
 
-  Future<Form> addForm(Form form) {
-    return Future.value(form);
-  }
-
-  Future<Form> updateForm(String formId, Form form) {
-    return Future.value(form);
-  }
-
-  Future<bool> deleteForm(String formId) {
-    return Future.value(false);
+  @override
+  Future<Form> update(String id, Form newData) {
+    // TODO: implement update
+    throw UnimplementedError();
   }
 }

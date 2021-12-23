@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
+import 'package:vonop/core/init/provider/form_provider.dart';
+import 'package:vonop/models/form/form.dart' as model;
 import 'widgets/info_card.dart';
 import 'widgets/last_login_card.dart';
 import '../forms_page/forms_page.dart';
@@ -13,6 +15,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FormProvider formProvider = context.watch<FormProvider>();
     return Padding(
       padding: const EdgeInsets.all(kDefaultPadding),
       child: Column(
@@ -25,30 +28,37 @@ class HomePage extends StatelessWidget {
             context,
             routeName: AccountsPage.routeName,
             headerText: "Hesaplar",
-            contentText: "Vonop ile kayıt olunan\nhesaplar",
+            contentText: "Sahip olunan tüm \nhesaplar",
             number: 13,
             gradient: const LinearGradient(
               colors: [
+                kSecondColor,
                 kPrimaryColor,
-                Color(0xFF003E6B),
               ],
             ),
           ),
           const SizedBox(
             height: kDefaultPadding / 2,
           ),
-          infoCard(
-            context,
-            routeName: FormsPage.routeName,
-            headerText: "Formlar",
-            contentText: "Sahip Olunan tüm \nkayıt formları",
-            number: 4,
-            gradient: const LinearGradient(
-              colors: [
-                Color(0xFF003E6B),
-                kPrimaryColor,
-              ],
-            ),
+          FutureBuilder<List<model.Form>>(
+            future: formProvider.getAll(),
+            builder: (BuildContext context,
+                AsyncSnapshot<List<model.Form>> snapshot) {
+              return infoCard(
+                context,
+                loaded: snapshot.hasData,
+                routeName: FormsPage.routeName,
+                headerText: "Formlar",
+                contentText: "Sahip olunan tüm \nkayıt formları",
+                number: snapshot.data?.length ?? 0,
+                gradient: const LinearGradient(
+                  colors: [
+                    kPrimaryColor,
+                    kSecondColor,
+                  ],
+                ),
+              );
+            },
           ),
           const SizedBox(
             height: kDefaultPadding * 2,

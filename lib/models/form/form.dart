@@ -78,9 +78,11 @@ class Form {
     if (country == null ||
         city == null ||
         district == null ||
-        postCode == null) {
+        postCode == null ||
+        address == null) {
       return null;
     }
+    return "$country, $city, $district $postCode\n$address";
   }
 
   List<String?> get structure => [

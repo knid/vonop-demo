@@ -7,6 +7,7 @@ import '../../../../core/constants/view/view_constants.dart';
 
 Widget infoCard(BuildContext context,
         {required String routeName,
+        bool loaded = true,
         required String headerText,
         required String contentText,
         required int number,
@@ -41,13 +42,18 @@ Widget infoCard(BuildContext context,
             ),
             Row(
               children: [
-                Text(
-                  number.toString(),
-                  style: GoogleFonts.montserrat(
-                    fontSize: 36,
-                    color: Colors.white,
+                if (loaded)
+                  Text(
+                    number.toString(),
+                    style: GoogleFonts.montserrat(
+                      fontSize: 36,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
+                if (!loaded)
+                  const CircularProgressIndicator(
+                    color: kPrimaryColor,
+                  ),
                 const SizedBox(
                   width: 10,
                 ),
