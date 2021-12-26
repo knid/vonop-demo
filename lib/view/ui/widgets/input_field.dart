@@ -6,7 +6,7 @@ import '../../../core/constants/view/view_constants.dart';
 Form inputField(
         {TextEditingController? textEditingController,
         String hintText = "",
-        Icon? suffixIcon}) =>
+        Widget? suffixIcon}) =>
     Form(
       child: Container(
         height: 50,
@@ -15,6 +15,7 @@ Form inputField(
         child: Padding(
           padding: const EdgeInsets.only(top: kDefaultPadding / 2),
           child: TextFormField(
+            autofillHints: const [AutofillHints.name],
             controller: textEditingController,
             decoration: textFormFieldDecoration(
                 hintText: hintText, suffixIcon: suffixIcon),

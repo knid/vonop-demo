@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:vonop/core/constants/form/form_fields.dart';
 import 'package:vonop/core/init/provider/form_provider.dart';
 import 'package:vonop/models/form/form.dart' as model;
+import 'package:vonop/view/ui/widgets/platform_specific/action_sheet/action_modal_bottom_sheet.dart';
 
 import 'widgets/form_card.dart';
 import 'widgets/form_button.dart';
@@ -22,7 +26,9 @@ class FormsPage extends StatelessWidget {
       builder: (context, AsyncSnapshot<List<model.Form>> snapshot) {
         if (snapshot.hasError) {
           //TODO:check error
+          print("err");
         }
+
         return Container(
           margin: const EdgeInsets.only(top: kDefaultPadding),
           padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding / 2),
@@ -49,8 +55,6 @@ class FormsPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20)),
                           context: context,
                           builder: (context) {
-                            ValueNotifier<bool> _value =
-                                ValueNotifier<bool>(false);
                             return GestureDetector(
                               onTap: () {
                                 FocusScope.of(context).unfocus();
@@ -81,41 +85,70 @@ class FormsPage extends StatelessWidget {
                                             kDefaultPadding),
                                         child: ListView(
                                           children: [
-                                            Text(
-                                              "Yeni Form",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headline1,
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Yeni Form",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline1,
+                                                ),
+                                                GestureDetector(
+                                                  onTap: () {},
+                                                  child: Container(
+                                                    width: 90,
+                                                    height: 30,
+                                                    padding:
+                                                        const EdgeInsets.all(5),
+                                                    alignment: Alignment.center,
+                                                    decoration: BoxDecoration(
+                                                        color: kPrimaryColor,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20)),
+                                                    child: Text("Alan Ekle",
+                                                        style: GoogleFonts
+                                                            .montserrat(
+                                                                color: Colors
+                                                                    .white)),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                             const SizedBox(
                                               height: kDefaultPadding,
                                             ),
                                             inputField(hintText: "*Form İsmi"),
-                                            Row(
-                                              children: [
-                                                Expanded(
-                                                    child: inputField(
-                                                        hintText: "İsim")),
-                                                Expanded(
-                                                    child: inputField(
-                                                        hintText: "Soyisim")),
-                                              ],
+                                            Text(
+                                              "İsim Soyisim",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline5,
                                             ),
-                                            inputField(hintText: "Form İsmi"),
-                                            inputField(hintText: "Form İsmi"),
-                                            inputField(hintText: "Form İsmi"),
-                                            inputField(hintText: "Form İsmi"),
-                                            inputField(hintText: "Form İsmi"),
-                                            ValueListenableBuilder(
-                                                valueListenable: _value,
-                                                builder: (context, value, _) {
-                                                  return CupertinoSwitch(
-                                                      value: _value.value,
-                                                      onChanged: (val) {
-                                                        _value.value =
-                                                            !_value.value;
-                                                      });
-                                                }),
+                                            Slidable(
+                                                key: ValueKey(0),
+                                                startActionPane: ActionPane(
+                                                  motion: const ScrollMotion(),
+                                                  dismissible: DismissiblePane(
+                                                      onDismissed: () {}),
+                                                  children: [
+                                                    SlidableAction(
+                                                      onPressed: (context) {},
+                                                      backgroundColor:
+                                                          const Color(
+                                                              0xFFFE4A49),
+                                                      foregroundColor:
+                                                          Colors.white,
+                                                      icon: Icons.delete,
+                                                      label: 'Kaldır',
+                                                    ),
+                                                  ],
+                                                ),
+                                                child:
+                                                    FormFields.nameAndLastName),
                                             const SizedBox(
                                               height: kDefaultPadding,
                                             ),
@@ -125,6 +158,16 @@ class FormsPage extends StatelessWidget {
                                               onPressed: () {},
                                               child: Text(
                                                 "Kaydet",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline4,
+                                              ),
+                                            ),
+                                            MaterialButton(
+                                              color: Colors.red,
+                                              onPressed: () {},
+                                              child: Text(
+                                                "Sil",
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .headline4,

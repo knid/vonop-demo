@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:vonop/core/constants/view/view_constants.dart';
 
 AppBar appBar(BuildContext context, String headerText) => AppBar(
-      backgroundColor: Colors.transparent,
-      shadowColor: Colors.transparent,
       centerTitle: false,
       title: Text(
         headerText,
@@ -33,6 +31,6 @@ AppBar appBar(BuildContext context, String headerText) => AppBar(
                 image: DecorationImage(image: AssetImage('assets/pp.jpeg'))),
           ),
         ),
-        const SizedBox(width: 20)
+        const SizedBox(width: kDefaultPadding)
       ],
     );

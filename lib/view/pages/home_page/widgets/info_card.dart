@@ -52,7 +52,8 @@ Widget infoCard(BuildContext context,
                   ),
                 if (!loaded)
                   const CircularProgressIndicator(
-                    color: kPrimaryColor,
+                    strokeWidth: 2,
+                    color: Colors.white,
                   ),
                 const SizedBox(
                   width: 10,

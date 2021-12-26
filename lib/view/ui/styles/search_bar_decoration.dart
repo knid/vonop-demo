@@ -12,7 +12,8 @@ final BoxDecoration inputDecoration = BoxDecoration(
     ),
   ],
 );
-InputDecoration textFormFieldDecoration({String? hintText, Icon? suffixIcon}) =>
+InputDecoration textFormFieldDecoration(
+        {String? hintText, Widget? suffixIcon}) =>
     InputDecoration(
       suffixIcon: Padding(
         padding: const EdgeInsets.only(bottom: 10),

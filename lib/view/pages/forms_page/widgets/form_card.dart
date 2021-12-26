@@ -65,7 +65,7 @@ Widget formCard(context,
                 Text(
                   data,
                   overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.montserrat(color: Colors.grey),
+                  style: Theme.of(context).textTheme.subtitle1,
                 ),
             const SizedBox(
               height: kDefaultPadding / 2,

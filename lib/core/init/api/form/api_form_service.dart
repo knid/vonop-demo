@@ -14,6 +14,12 @@ class APIFormService implements BaseAPIDataService<Form> {
   }
 
   @override
+  Future<Form> update(String id, Form newData) {
+    // TODO: implement update
+    throw UnimplementedError();
+  }
+
+  @override
   Future<bool> delete(String id) {
     // TODO: implement delete
     throw UnimplementedError();
@@ -32,13 +38,6 @@ class APIFormService implements BaseAPIDataService<Form> {
         }
       }
     }
-    print(forms[0].firstName);
     return forms;
-  }
-
-  @override
-  Future<Form> update(String id, Form newData) {
-    // TODO: implement update
-    throw UnimplementedError();
   }
 }
