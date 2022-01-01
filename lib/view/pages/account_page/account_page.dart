@@ -16,8 +16,8 @@ class AccountsPage extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding / 2),
       child: Column(
         children: <Widget>[
-          inputField(
-              hintText: "Arama",
+          InputField(
+              labelText: "Arama",
               suffixIcon: const Icon(
                 Icons.search,
                 color: kPrimaryColor,

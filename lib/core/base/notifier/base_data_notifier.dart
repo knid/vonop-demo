@@ -1,8 +1,8 @@
-import 'package:vonop/models/form/form.dart';
+import 'package:flutter/material.dart';
 
-abstract class BaseDataNotifier<T> {
-  Future<List<T>?> getAll();
-  Future<Form> add(T data);
-  Future<Form> update(String id, T data);
+abstract class BaseDataNotifier<T> with ChangeNotifier {
+  Future<List<T>> getAll();
+  Future<T> add(T data);
+  Future<T> update(String id, T data);
   Future<bool> delete(String id);
 }

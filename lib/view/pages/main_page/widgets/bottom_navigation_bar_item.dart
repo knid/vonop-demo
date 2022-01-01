@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/constants/view/view_constants.dart';
-import '../../../../core/init/provider/page_provider.dart';
+import '../../../../core/init/provider/page/page_provider.dart';
 
 Widget bottomNavigationBarItem(BuildContext context,
         {required String routeName, required Icon icon, String tooltip = ""}) =>

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:vonop/core/constants/view/view_constants.dart';
 
 final BoxDecoration inputDecoration = BoxDecoration(
   color: Colors.white,
@@ -12,17 +13,20 @@ final BoxDecoration inputDecoration = BoxDecoration(
     ),
   ],
 );
-InputDecoration textFormFieldDecoration(
-        {String? hintText, Widget? suffixIcon}) =>
+InputDecoration textFormFieldDecoration({
+  String? labelText,
+  Widget? suffixIcon,
+  bool enableFloatingLabelText = false,
+  EdgeInsetsGeometry? contentPadding,
+}) =>
     InputDecoration(
-      suffixIcon: Padding(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: suffixIcon,
-      ),
-      hintText: hintText,
-      hintStyle: GoogleFonts.montserrat(),
+      labelText: enableFloatingLabelText ? labelText : null,
+      hintText: enableFloatingLabelText ? null : labelText,
+      floatingLabelStyle: GoogleFonts.montserrat(color: kPrimaryColor),
+      suffixIcon: suffixIcon,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: BorderSide.none,
       ),
+      contentPadding: contentPadding,
     );

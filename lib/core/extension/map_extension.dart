@@ -1,7 +1,7 @@
 extension MapExtension<T> on Map<String, T> {
   bool get isValuesNull {
     bool allValuesNull = true;
-    for (var value in this.values) {
+    for (var value in values) {
       if (value != null) {
         allValuesNull = false;
       } else {
@@ -16,7 +16,7 @@ extension MapExtension<T> on Map<String, T> {
   }
 
   Map<String, T> copyWith(String key, T value) {
-    Map<String, T> data = new Map.from(this);
+    Map<String, T> data = Map.from(this);
     data[key] = value;
     return data;
   }

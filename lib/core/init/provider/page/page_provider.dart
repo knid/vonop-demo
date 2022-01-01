@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../view/pages/account_page/account_page.dart';
-import '../../../view/pages/forms_page/forms_page.dart';
-import '../../../view/pages/home_page/home_page.dart';
+import '../../../../view/pages/account_page/account_page.dart';
+import '../../../../view/pages/forms_page/forms_page.dart';
+import '../../../../view/pages/home_page/home_page.dart';
 
 class PageProvider extends ChangeNotifier {
   final PageController controller = PageController(initialPage: 1);

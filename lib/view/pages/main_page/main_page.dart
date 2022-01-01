@@ -7,7 +7,7 @@ import '../account_page/account_page.dart';
 import '../../ui/widgets/app_bar.dart';
 import '../../ui/widgets/keep_alive_page.dart';
 import '../../ui/widgets/floating_action_button.dart';
-import '../../../core/init/provider/page_provider.dart';
+import '../../../core/init/provider/page/page_provider.dart';
 import '../../../core/constants/view/view_constants.dart';
 import 'widgets/bottom_navigation_bar_item.dart';
 
