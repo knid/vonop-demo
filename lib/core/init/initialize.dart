@@ -3,11 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:vonop/core/init/provider/form/form_provider.dart';
 
 import '../init/locator/locator.dart';
 import 'notification/firebase_push_notification_service.dart';
 import '../../view/pages/login_register/welcome_page.dart';
 import '../constants/enums/initialize_app_result_type_enum.dart';
+import 'package:provider/provider.dart';
 
 class Initialize {
   static late FirebasePushNotificationService _notificationService;
@@ -37,6 +39,7 @@ class Initialize {
       return ResultType.NO_NOTIFICATION_PERMISSION;
     }
 
+    await context.read<FormProvider>().getAll();
     return ResultType.NO_ERROR;
   }
 

@@ -40,25 +40,18 @@ class HomePage extends StatelessWidget {
           const SizedBox(
             height: kDefaultPadding / 2,
           ),
-          FutureBuilder<List<model.Form>>(
-            future: formProvider.getAll(),
-            builder: (BuildContext context,
-                AsyncSnapshot<List<model.Form>> snapshot) {
-              return infoCard(
-                context,
-                loaded: snapshot.hasData,
-                routeName: FormsPage.routeName,
-                headerText: "Formlar",
-                contentText: "Sahip olunan tüm \nkayıt formları",
-                number: snapshot.data?.length ?? 0,
-                gradient: const LinearGradient(
-                  colors: [
-                    kPrimaryColor,
-                    kSecondColor,
-                  ],
-                ),
-              );
-            },
+          infoCard(
+            context,
+            routeName: FormsPage.routeName,
+            headerText: "Formlar",
+            contentText: "Sahip olunan tüm \nkayıt formları",
+            number: formProvider.forms.length,
+            gradient: const LinearGradient(
+              colors: [
+                kPrimaryColor,
+                kSecondColor,
+              ],
+            ),
           ),
           const SizedBox(
             height: kDefaultPadding * 2,

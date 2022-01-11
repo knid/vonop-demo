@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:vonop/core/constants/enums/api_error_enum.dart';
 
 //import '../../constants/enums/locale_keys_enum.dart';
 
@@ -12,12 +15,25 @@ class NetworkManager {
   late final Dio dio;
   NetworkManager._init() {
     final baseOptions = BaseOptions(
-      baseUrl: 'http://192.168.1.104:9000',
+      baseUrl: 'http://192.168.1.111:9000',
       headers: {
-        'Authorization': 'Token 888230bb7ea2624a4c2e41c3c09b74bb8ab479f6'
+        HttpHeaders.authorizationHeader:
+            'Token 10d8d81572a77bf174ea2f6758524ffa9b007ccc'
       },
-      connectTimeout: 3 * 1000,
+      connectTimeout: 1000 * 10,
     );
     dio = Dio(baseOptions);
+  }
+
+  static handleError(Object e) {
+    if (e is DioError) {
+      final Response? response = (e).response;
+      if (response != null) {
+        final rawData = response.data;
+        if (rawData['detail'] == 'Incorrect authentication credentials.') {
+          throw APIError(APIErrorType.INCORRECT_CREDENTIALS, response);
+        }
+      }
+    }
   }
 }

@@ -7,6 +7,8 @@ extension HttpResponseExtension on HttpResponeStatus {
         return 200;
       case HttpResponeStatus.CREATED:
         return 201;
+      case HttpResponeStatus.NO_CONTENT:
+        return 204;
       default:
         return 0;
     }

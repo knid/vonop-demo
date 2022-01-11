@@ -4,9 +4,12 @@ import 'package:provider/provider.dart';
 import 'package:vonop/core/constants/view/view_constants.dart';
 import 'package:vonop/core/extension/map_extension.dart';
 import 'package:vonop/core/init/provider/form/form_fields_provider.dart';
+import 'package:vonop/core/init/provider/form/form_provider.dart';
 import 'package:vonop/view/pages/forms_page/widgets/add_field_actions.dart';
 import 'package:vonop/view/ui/widgets/platform_specific/action_sheet/action_modal_bottom_sheet.dart';
 import 'package:vonop/view/ui/widgets/platform_specific/action_sheet/sheet_action.dart';
+
+import 'package:vonop/models/form/form.dart' as model;
 
 Widget formInfoSheet(BuildContext context) => GestureDetector(
       onTap: () {
@@ -15,6 +18,10 @@ Widget formInfoSheet(BuildContext context) => GestureDetector(
       child: ChangeNotifierProvider<FormFieldsProvider>(
         create: (context) => FormFieldsProvider(),
         builder: (context, child) {
+          FormFieldsProvider _formFieldsProvider =
+              context.read<FormFieldsProvider>();
+          _formFieldsProvider.structure['form_name'] =
+              _formFieldsProvider.formName;
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -48,6 +55,8 @@ Widget formInfoSheet(BuildContext context) => GestureDetector(
                                 onTap: () {
                                   FormFieldsProvider formFieldsProvider =
                                       context.read<FormFieldsProvider>();
+                                  formFieldsProvider.structure['form_name'] =
+                                      formFieldsProvider.formName;
 
                                   showPlatformSpecificModalBottomSheetWithActions(
                                       context,
@@ -90,7 +99,25 @@ Widget formInfoSheet(BuildContext context) => GestureDetector(
                           const Text("*Zorunlu alanlar"),
                           MaterialButton(
                             color: kPrimaryColor,
-                            onPressed: () {},
+                            onPressed: () {
+                              FormFieldsProvider formFieldsProvider =
+                                  context.read<FormFieldsProvider>();
+                              Map<String, Widget?> structure =
+                                  formFieldsProvider.structure;
+                              Map<String, dynamic> json = {};
+                              for (var key in structure.keys) {
+                                if (structure[key] != null) {
+                                  print(key);
+                                  json[key] = formFieldsProvider
+                                      .textEditingControllers[key]?.text;
+                                }
+                              }
+                              print(json);
+                              context
+                                  .read<FormProvider>()
+                                  .add(model.Form.fromJson(json));
+                              Navigator.of(context).pop();
+                            },
                             child: Text(
                               "Kaydet",
                               style: Theme.of(context).textTheme.headline4,

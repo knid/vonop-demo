@@ -4,17 +4,19 @@ import 'package:vonop/view/ui/widgets/input_field.dart';
 
 class FormFieldsProvider extends ChangeNotifier {
   FormFieldsProvider() {
-    _structure['formName'] = formName;
+    for (var item in _structure.keys) {
+      textEditingControllers[item] = TextEditingController();
+    }
   }
   Map<String, Widget?> _structure = {
-    'formName': null,
+    'form_name': null,
     'name': null,
     'username': null,
     'email': null,
-    'phoneNumber': null,
+    'phone_number': null,
     'birthday': null,
     'gender': null,
-    'identityNo': null,
+    'identity_id': null,
     'address': null,
     'password': null,
   };
@@ -30,6 +32,8 @@ class FormFieldsProvider extends ChangeNotifier {
   Widget get password => _buildPasswordField();
 
   Map<String, Widget?> get structure => _structure;
+  Map<String, TextEditingController> textEditingControllers = {};
+
   set structure(Map<String, Widget?> data) {
     _structure = data;
     notifyListeners();
@@ -40,7 +44,7 @@ class FormFieldsProvider extends ChangeNotifier {
       labelText: "*Form İsmi",
       maxLength: 20,
       enableFloatingLabelText: true,
-      textEditingController: TextEditingController(),
+      textEditingController: textEditingControllers['form_name'],
     );
   }
 
@@ -54,7 +58,7 @@ class FormFieldsProvider extends ChangeNotifier {
             maxLength: 15,
             keyboardType: TextInputType.text,
             autoFillHints: const [AutofillHints.name],
-            textEditingController: TextEditingController(),
+            textEditingController: textEditingControllers['name'],
           ),
         ),
         Expanded(
@@ -63,7 +67,7 @@ class FormFieldsProvider extends ChangeNotifier {
             maxLength: 15,
             enableFloatingLabelText: true,
             keyboardType: TextInputType.text,
-            textEditingController: TextEditingController(),
+            textEditingController: textEditingControllers['surname'],
           ),
         ),
       ],
@@ -74,7 +78,7 @@ class FormFieldsProvider extends ChangeNotifier {
     return InputField(
       labelText: "Kullanıcı Adı",
       enableFloatingLabelText: true,
-      textEditingController: TextEditingController(),
+      textEditingController: textEditingControllers['username'],
     );
   }
 
@@ -82,7 +86,7 @@ class FormFieldsProvider extends ChangeNotifier {
     return InputField(
       labelText: "E-Mail",
       enableFloatingLabelText: true,
-      textEditingController: TextEditingController(),
+      textEditingController: textEditingControllers['email'],
       validator: (val) {
         if (val != null) {
           if (!ApplicationConstants.EMAIL_REGEX.hasMatch(val)) {
@@ -97,7 +101,7 @@ class FormFieldsProvider extends ChangeNotifier {
     return InputField(
       labelText: "Telefon Numarası",
       enableFloatingLabelText: true,
-      textEditingController: TextEditingController(),
+      textEditingController: textEditingControllers['phone_number'],
       keyboardType: TextInputType.number,
     );
   }
@@ -106,7 +110,7 @@ class FormFieldsProvider extends ChangeNotifier {
     return InputField(
       labelText: "Doğum Günü",
       enableFloatingLabelText: true,
-      textEditingController: TextEditingController(),
+      textEditingController: textEditingControllers['birthday'],
     );
   }
 
@@ -114,7 +118,7 @@ class FormFieldsProvider extends ChangeNotifier {
     return InputField(
       labelText: "Cinsiyet",
       enableFloatingLabelText: true,
-      textEditingController: TextEditingController(),
+      textEditingController: textEditingControllers['gender'],
     );
   }
 
@@ -122,7 +126,7 @@ class FormFieldsProvider extends ChangeNotifier {
     return InputField(
       labelText: "Kimlik Numarası",
       enableFloatingLabelText: true,
-      textEditingController: TextEditingController(),
+      textEditingController: textEditingControllers['identity_id'],
     );
   }
 
@@ -133,7 +137,7 @@ class FormFieldsProvider extends ChangeNotifier {
       maxLines: 3,
       maxLength: 200,
       enableFloatingLabelText: true,
-      textEditingController: TextEditingController(),
+      textEditingController: textEditingControllers['address'],
     );
   }
 
@@ -143,7 +147,7 @@ class FormFieldsProvider extends ChangeNotifier {
       enableFloatingLabelText: true,
       obscureText: true,
       autoFillHints: [AutofillHints.newPassword],
-      textEditingController: TextEditingController(),
+      textEditingController: textEditingControllers['password'],
     );
   }
 }

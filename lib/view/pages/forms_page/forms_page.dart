@@ -15,10 +15,12 @@ class FormsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FormProvider formProvider = context.read<FormProvider>();
+    print("build");
     return FutureBuilder<List<model.Form>>(
-      future: formProvider.getAll(),
+      future: context.read<FormProvider>().getAll(),
       builder: (context, AsyncSnapshot<List<model.Form>> snapshot) {
+        FormProvider formProvider = context.watch<FormProvider>();
+
         return Container(
           margin: const EdgeInsets.only(top: kDefaultPadding),
           padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding / 2),
@@ -31,9 +33,9 @@ class FormsPage extends StatelessWidget {
               Expanded(
                 child: ListView(
                   children: List.generate(
-                    snapshot.data!.length,
+                    formProvider.forms.length,
                     (index) => formCard(context,
-                        form: snapshot.data![index], index: index),
+                        form: formProvider.forms[index], index: index),
                   ),
                 ),
               ),

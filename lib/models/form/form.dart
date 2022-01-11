@@ -52,6 +52,7 @@ class Form {
       );
 
   Map<String, Object?> toJson() => {
+        "form_name": formName,
         "first_name": firstName,
         "last_name": lastName,
         "username": username,
