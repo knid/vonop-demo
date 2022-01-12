@@ -11,8 +11,7 @@ List<SheetAction> sheetActions(BuildContext context) {
       SheetAction(
         const Text('İsim Soyisim'),
         () {
-          formFieldsProvider.structure = formFieldsProvider.structure
-              .copyWith('name', formFieldsProvider.nameAndLastName);
+          formFieldsProvider.structure = formFieldsProvider.structure.copyWith('name', formFieldsProvider.nameAndLastName);
           Navigator.pop(context);
         },
       ),
@@ -20,8 +19,7 @@ List<SheetAction> sheetActions(BuildContext context) {
       SheetAction(
         const Text('Kullanıcı Adı'),
         () {
-          formFieldsProvider.structure = formFieldsProvider.structure
-              .copyWith('username', formFieldsProvider.username);
+          formFieldsProvider.structure = formFieldsProvider.structure.copyWith('username', formFieldsProvider.username);
           Navigator.pop(context);
         },
       ),
@@ -29,8 +27,7 @@ List<SheetAction> sheetActions(BuildContext context) {
       SheetAction(
         const Text('E-Mail'),
         () {
-          formFieldsProvider.structure = formFieldsProvider.structure
-              .copyWith('email', formFieldsProvider.email);
+          formFieldsProvider.structure = formFieldsProvider.structure.copyWith('email', formFieldsProvider.email);
           Navigator.pop(context);
         },
       ),
@@ -38,8 +35,7 @@ List<SheetAction> sheetActions(BuildContext context) {
       SheetAction(
         const Text('Telefon Numarası'),
         () {
-          formFieldsProvider.structure = formFieldsProvider.structure
-              .copyWith('phoneNumber', formFieldsProvider.phoneNumber);
+          formFieldsProvider.structure = formFieldsProvider.structure.copyWith('phoneNumber', formFieldsProvider.phoneNumber);
           Navigator.pop(context);
         },
       ),
@@ -47,8 +43,7 @@ List<SheetAction> sheetActions(BuildContext context) {
       SheetAction(
         const Text('Doğum Tarihi'),
         () {
-          formFieldsProvider.structure = formFieldsProvider.structure
-              .copyWith('birthday', formFieldsProvider.birthday);
+          formFieldsProvider.structure = formFieldsProvider.structure.copyWith('birthday', formFieldsProvider.birthday);
           Navigator.pop(context);
         },
       ),
@@ -56,8 +51,7 @@ List<SheetAction> sheetActions(BuildContext context) {
       SheetAction(
         const Text('Cinsiyet'),
         () {
-          formFieldsProvider.structure = formFieldsProvider.structure
-              .copyWith('gender', formFieldsProvider.gender);
+          formFieldsProvider.structure = formFieldsProvider.structure.copyWith('gender', formFieldsProvider.gender);
           Navigator.pop(context);
         },
       ),
@@ -65,8 +59,7 @@ List<SheetAction> sheetActions(BuildContext context) {
       SheetAction(
         const Text('Kimlik Numarası'),
         () {
-          formFieldsProvider.structure = formFieldsProvider.structure
-              .copyWith('identityNo', formFieldsProvider.identityNo);
+          formFieldsProvider.structure = formFieldsProvider.structure.copyWith('identityNo', formFieldsProvider.identityNo);
           Navigator.pop(context);
         },
       ),
@@ -74,8 +67,7 @@ List<SheetAction> sheetActions(BuildContext context) {
       SheetAction(
         const Text('Adres Bilgileri'),
         () {
-          formFieldsProvider.structure = formFieldsProvider.structure
-              .copyWith('address', formFieldsProvider.address);
+          formFieldsProvider.structure = formFieldsProvider.structure.copyWith('address', formFieldsProvider.address);
 
           Navigator.pop(context);
         },
@@ -84,8 +76,7 @@ List<SheetAction> sheetActions(BuildContext context) {
       SheetAction(
         const Text('Parola'),
         () {
-          formFieldsProvider.structure = formFieldsProvider.structure
-              .copyWith('password', formFieldsProvider.password);
+          formFieldsProvider.structure = formFieldsProvider.structure.copyWith('password', formFieldsProvider.password);
           Navigator.pop(context);
         },
       ),

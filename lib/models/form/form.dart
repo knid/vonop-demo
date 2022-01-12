@@ -1,4 +1,5 @@
 class Form {
+  String? formId;
   String formName;
   String? firstName;
   String? lastName;
@@ -17,6 +18,7 @@ class Form {
 
   Form({
     required this.formName,
+    this.formId,
     this.firstName,
     this.lastName,
     this.username,
@@ -34,6 +36,7 @@ class Form {
   });
 
   factory Form.fromJson(Map<String, dynamic> json) => Form(
+        formId: json['form_id'],
         formName: json['form_name'],
         firstName: json['first_name'],
         lastName: json['last_name'],

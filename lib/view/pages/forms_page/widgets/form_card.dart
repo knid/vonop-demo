@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:vonop/core/init/provider/form/form_provider.dart';
 import 'package:vonop/models/form/form.dart' as model;
 
+import 'package:provider/provider.dart';
 import '../../../ui/styles/card_decoration.dart';
 import '../../../../core/constants/view/view_constants.dart';
 
-Widget formCard(context,
-    {required model.Form form, required int index, bool slidable = true}) {
+Widget formCard(BuildContext context, {required model.Form form, required int index, bool slidable = true}) {
   return Container(
     margin: const EdgeInsets.all(kDefaultPadding / 2),
     decoration: cardDecoration,
@@ -16,7 +16,21 @@ Widget formCard(context,
       key: ValueKey(index),
       startActionPane: ActionPane(
         motion: const ScrollMotion(),
-        dismissible: DismissiblePane(onDismissed: () {}),
+        dismissible: DismissiblePane(
+          onDismissed: () {
+            if (form.formId != null) {
+              context.read<FormProvider>().delete(form.formId!);
+            }
+          },
+          // confirmDismiss: () async {
+          //   return showDialog<bool>(
+          //     context: context,
+          //     builder: (context) {
+          //       return AlertDialog();
+          //     },
+          //   ).then((value) => value ?? false);
+          // },
+        ),
         children: [
           SlidableAction(
             onPressed: (context) {},

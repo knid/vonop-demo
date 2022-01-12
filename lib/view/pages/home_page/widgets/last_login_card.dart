@@ -4,14 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'last_login_info_sheet.dart';
 import '../../../../core/constants/view/view_constants.dart';
 
-Widget lastLoginCard(BuildContext context, String lastLoginId) =>
-    GestureDetector(
+Widget lastLoginCard(BuildContext context, String lastLoginId) => GestureDetector(
       onTap: () {
         showModalBottomSheet(
             isScrollControlled: true,
             backgroundColor: Colors.white,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             context: context,
             builder: (context) {
               return lastLoginInfoSheet(lastLoginId);
@@ -21,8 +19,7 @@ Widget lastLoginCard(BuildContext context, String lastLoginId) =>
         children: [
           Container(
             height: 50,
-            padding:
-                const EdgeInsets.symmetric(horizontal: kDefaultPadding / 2),
+            padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding / 2),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
             ),

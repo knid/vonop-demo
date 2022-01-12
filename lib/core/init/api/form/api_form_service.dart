@@ -53,7 +53,7 @@ class APIFormService implements BaseAPIDataService<Form> {
   @override
   Future<bool> delete(String id) async {
     try {
-      final path = endPoint + id;
+      final path = endPoint + id + "/";
       final Response response = await NetworkManager.instance.dio.delete(path);
       if (response.statusCode == HttpResponeStatus.NO_CONTENT.code) {
         return true;

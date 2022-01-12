@@ -9,8 +9,7 @@ Widget accountCard(context, accountId) => GestureDetector(
       onTap: () {
         showModalBottomSheet(
             backgroundColor: Colors.white,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             context: context,
             builder: (context) {
               return infoSheet(accountId);
@@ -45,14 +44,11 @@ Widget accountCard(context, accountId) => GestureDetector(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("hepsiburada.com",
-                            overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.montserrat()),
+                        Text("hepsiburada.com", overflow: TextOverflow.ellipsis, style: GoogleFonts.montserrat()),
                         Text(
                           "sinan_kanidagli@hotmail.com",
                           overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.montserrat(
-                              color: Colors.grey, fontSize: 12),
+                          style: GoogleFonts.montserrat(color: Colors.grey, fontSize: 12),
                         ),
                       ],
                     ),

@@ -12,8 +12,7 @@ Widget lastLoginInfoSheet(String lastLoginId) => Padding(
             margin: const EdgeInsets.only(top: kDefaultPadding / 2),
             height: 5,
             width: 50,
-            decoration: BoxDecoration(
-                color: Colors.grey, borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(color: Colors.grey, borderRadius: BorderRadius.circular(10)),
           ),
           Padding(
             padding: const EdgeInsets.all(kDefaultPadding),
@@ -66,9 +65,7 @@ Widget lastLoginInfoSheet(String lastLoginId) => Padding(
                 ),
                 Row(
                   children: [
-                    Text(" IP",
-                        style: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.bold, fontSize: 20)),
+                    Text(" IP", style: GoogleFonts.montserrat(fontWeight: FontWeight.bold, fontSize: 20)),
                     // Text('Parola:',
                     //     style: GoogleFonts.montserrat()),
                     const SizedBox(

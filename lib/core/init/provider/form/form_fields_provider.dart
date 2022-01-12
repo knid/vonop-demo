@@ -1,12 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:vonop/core/constants/app/app_constants.dart';
 import 'package:vonop/view/ui/widgets/input_field.dart';
+import '../../../../models/form/form.dart' as model;
 
 class FormFieldsProvider extends ChangeNotifier {
   FormFieldsProvider() {
     for (var item in _structure.keys) {
       textEditingControllers[item] = TextEditingController();
     }
+    textEditingControllers['last_name'] = TextEditingController();
+  }
+  factory FormFieldsProvider.from(model.Form form) {
+    var formFieldsProvider = FormFieldsProvider()
+      ..textEditingControllers['form_name']?.text = form.formName
+      ..textEditingControllers['name']?.text = form.firstName ?? ""
+      ..textEditingControllers['last_name']?.text = form.lastName ?? ""
+      ..textEditingControllers['username']?.text = form.username ?? ""
+      ..textEditingControllers['email']?.text = form.email ?? ""
+      ..textEditingControllers['phone_number']?.text = form.phoneNumber ?? ""
+      ..textEditingControllers['birthday']?.text = form.birthday ?? ""
+      ..textEditingControllers['gender']?.text = form.gender ?? ""
+      ..textEditingControllers['identity_id']?.text = form.identityId ?? ""
+      ..textEditingControllers['address']?.text = form.address ?? ""
+      ..textEditingControllers['password']?.text = form.password ?? "";
+
+    formFieldsProvider._structure['name'] = form.firstName != null ? formFieldsProvider.formName : null;
+    formFieldsProvider._structure['username'] = form.firstName != null ? formFieldsProvider.formName : null;
+    formFieldsProvider._structure['email'] = form.firstName != null ? formFieldsProvider.formName : null;
+    formFieldsProvider._structure['phone_number'] = form.firstName != null ? formFieldsProvider.formName : null;
+    formFieldsProvider._structure['birthday'] = form.firstName != null ? formFieldsProvider.formName : null;
+    formFieldsProvider._structure['gender'] = form.firstName != null ? formFieldsProvider.formName : null;
+    formFieldsProvider._structure['identity_id'] = form.firstName != null ? formFieldsProvider.formName : null;
+    formFieldsProvider._structure['address'] = form.firstName != null ? formFieldsProvider.formName : null;
+    formFieldsProvider._structure['password'] = form.firstName != null ? formFieldsProvider.formName : null;
+
+    return formFieldsProvider;
   }
   Map<String, Widget?> _structure = {
     'form_name': null,
@@ -39,16 +67,15 @@ class FormFieldsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Widget _buildFormNameField() {
-    return InputField(
-      labelText: "*Form İsmi",
-      maxLength: 20,
-      enableFloatingLabelText: true,
-      textEditingController: textEditingControllers['form_name'],
-    );
+  Widget _buildFormNameField([TextEditingController? textEditingController]) {
+    textEditingController ??= textEditingControllers['form_name'];
+    return InputField(labelText: "*Form İsmi", maxLength: 20, enableFloatingLabelText: true, textEditingController: textEditingController);
   }
 
-  Widget _buildNameAndLastNameField() {
+  Widget _buildNameAndLastNameField([TextEditingController? textEditingControllerName, TextEditingController? textEditingControllerLastName]) {
+    textEditingControllerName ??= textEditingControllers['name'];
+    textEditingControllerLastName ??= textEditingControllers['last_name'];
+
     return Row(
       children: [
         Expanded(
@@ -58,7 +85,7 @@ class FormFieldsProvider extends ChangeNotifier {
             maxLength: 15,
             keyboardType: TextInputType.text,
             autoFillHints: const [AutofillHints.name],
-            textEditingController: textEditingControllers['name'],
+            textEditingController: textEditingControllerName,
           ),
         ),
         Expanded(
@@ -67,26 +94,28 @@ class FormFieldsProvider extends ChangeNotifier {
             maxLength: 15,
             enableFloatingLabelText: true,
             keyboardType: TextInputType.text,
-            textEditingController: textEditingControllers['surname'],
+            textEditingController: textEditingControllerLastName,
           ),
         ),
       ],
     );
   }
 
-  Widget _buildUsernameField() {
+  Widget _buildUsernameField([TextEditingController? textEditingController]) {
+    textEditingController ??= textEditingControllers['username'];
     return InputField(
       labelText: "Kullanıcı Adı",
       enableFloatingLabelText: true,
-      textEditingController: textEditingControllers['username'],
+      textEditingController: textEditingController,
     );
   }
 
-  Widget _buildEmailField() {
+  Widget _buildEmailField([TextEditingController? textEditingController]) {
+    textEditingController ??= textEditingControllers['email'];
     return InputField(
       labelText: "E-Mail",
       enableFloatingLabelText: true,
-      textEditingController: textEditingControllers['email'],
+      textEditingController: textEditingController,
       validator: (val) {
         if (val != null) {
           if (!ApplicationConstants.EMAIL_REGEX.hasMatch(val)) {
@@ -97,57 +126,63 @@ class FormFieldsProvider extends ChangeNotifier {
     );
   }
 
-  Widget _buildPhoneNumberField() {
+  Widget _buildPhoneNumberField([TextEditingController? textEditingController]) {
+    textEditingController ??= textEditingControllers['phone_number'];
     return InputField(
       labelText: "Telefon Numarası",
       enableFloatingLabelText: true,
-      textEditingController: textEditingControllers['phone_number'],
+      textEditingController: textEditingController,
       keyboardType: TextInputType.number,
     );
   }
 
-  Widget _buildBirthdayField() {
+  Widget _buildBirthdayField([TextEditingController? textEditingController]) {
+    textEditingController ??= textEditingControllers['birthday'];
     return InputField(
       labelText: "Doğum Günü",
       enableFloatingLabelText: true,
-      textEditingController: textEditingControllers['birthday'],
+      textEditingController: textEditingController,
     );
   }
 
-  Widget _buildGenderField() {
+  Widget _buildGenderField([TextEditingController? textEditingController]) {
+    textEditingController ??= textEditingControllers['gender'];
     return InputField(
       labelText: "Cinsiyet",
       enableFloatingLabelText: true,
-      textEditingController: textEditingControllers['gender'],
+      textEditingController: textEditingController,
     );
   }
 
-  Widget _buildIdentityNoField() {
+  Widget _buildIdentityNoField([TextEditingController? textEditingController]) {
+    textEditingController ??= textEditingControllers['identity_id'];
     return InputField(
       labelText: "Kimlik Numarası",
       enableFloatingLabelText: true,
-      textEditingController: textEditingControllers['identity_id'],
+      textEditingController: textEditingController,
     );
   }
 
-  Widget _buildAddressField() {
+  Widget _buildAddressField([TextEditingController? textEditingController]) {
+    textEditingController ??= textEditingControllers['address'];
     return InputField(
       labelText: "Adres",
       height: 80,
       maxLines: 3,
       maxLength: 200,
       enableFloatingLabelText: true,
-      textEditingController: textEditingControllers['address'],
+      textEditingController: textEditingController,
     );
   }
 
-  Widget _buildPasswordField() {
+  Widget _buildPasswordField([TextEditingController? textEditingController]) {
+    textEditingController ??= textEditingControllers['password'];
     return InputField(
       labelText: "Parola",
       enableFloatingLabelText: true,
       obscureText: true,
-      autoFillHints: [AutofillHints.newPassword],
-      textEditingController: textEditingControllers['password'],
+      autoFillHints: const [AutofillHints.newPassword],
+      textEditingController: textEditingController,
     );
   }
 }

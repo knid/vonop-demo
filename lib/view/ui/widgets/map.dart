@@ -6,12 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-Widget map(
-        {required double latitude,
-        required double longitude,
-        double zoom = 8.0,
-        bool ignoreTouch = true,
-        bool enableMark = false}) =>
+Widget map({required double latitude, required double longitude, double zoom = 8.0, bool ignoreTouch = true, bool enableMark = false}) =>
     IgnorePointer(
       ignoring: ignoreTouch,
       child: FlutterMap(

@@ -16,8 +16,7 @@ class WelcomePage extends StatelessWidget {
       infoPage(
         context,
         header: 'Bir kere kaydet, her yerde kullan',
-        content:
-            'Kaydettiğin formu Vonop kullanan her yerde sadece bir tıkla kullanabilirsin',
+        content: 'Kaydettiğin formu Vonop kullanan her yerde sadece bir tıkla kullanabilirsin',
         svgPath: 'assets/save.svg',
       ),
       infoPage(

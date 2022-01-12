@@ -38,32 +38,21 @@ void showPlatformSpecificModalBottomSheetWithActions(
   }
 }
 
-void _cupertino(BuildContext context,
-    {Widget? title,
-    Widget? description,
-    required List<SheetAction> actions,
-    SheetAction? cancelButton}) {
+void _cupertino(BuildContext context, {Widget? title, Widget? description, required List<SheetAction> actions, SheetAction? cancelButton}) {
   showCupertinoModalPopup<void>(
     context: context,
     builder: (context) {
       return CupertinoActionSheet(
         title: title,
         message: description,
-        actions: actions
-            .map((e) => CupertinoActionSheetAction(
-                onPressed: e.onPressed, child: e.child))
-            .toList(),
-        cancelButton: cancelButton == null
-            ? null
-            : CupertinoActionSheetAction(
-                onPressed: cancelButton.onPressed, child: cancelButton.child),
+        actions: actions.map((e) => CupertinoActionSheetAction(onPressed: e.onPressed, child: e.child)).toList(),
+        cancelButton: cancelButton == null ? null : CupertinoActionSheetAction(onPressed: cancelButton.onPressed, child: cancelButton.child),
       );
     },
   );
 }
 
-void _material(BuildContext context,
-    {Widget? title, Widget? description, required List<SheetAction> actions}) {
+void _material(BuildContext context, {Widget? title, Widget? description, required List<SheetAction> actions}) {
   showModalBottomSheet(
       context: context,
       builder: (context) {
@@ -91,10 +80,7 @@ void _material(BuildContext context,
                               onTap: e.onPressed,
                               child: Row(
                                 children: [
-                                  Padding(
-                                      padding:
-                                          const EdgeInsets.all(kDefaultPadding),
-                                      child: e.child),
+                                  Padding(padding: const EdgeInsets.all(kDefaultPadding), child: e.child),
                                 ],
                               ),
                             ))

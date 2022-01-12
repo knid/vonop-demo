@@ -16,8 +16,7 @@ Widget formButtons(BuildContext context) => Container(
             onPress: () {
               showModalBottomSheet(
                   isScrollControlled: true,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                   context: context,
                   builder: (context) {
                     return formInfoSheet(context);

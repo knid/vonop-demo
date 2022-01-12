@@ -20,7 +20,7 @@ class APIError implements Exception {
     String string = "\nAPIError: $type";
     string += response != null
         ? "\nDetail: ${response!.data['detail']}\n"
-        : "[Response not found]";
+        : "\n[Response not found]\n";
     return string;
   }
 }

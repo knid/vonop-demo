@@ -25,17 +25,14 @@ class FormsPage extends StatelessWidget {
           margin: const EdgeInsets.only(top: kDefaultPadding),
           padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding / 2),
           child: Column(children: <Widget>[
-            const InputField(
-                labelText: "Arama",
-                suffixIcon: Icon(Icons.search, color: kPrimaryColor)),
+            const InputField(labelText: "Arama", suffixIcon: Icon(Icons.search, color: kPrimaryColor)),
             formButtons(context),
             if (snapshot.hasData)
               Expanded(
                 child: ListView(
                   children: List.generate(
                     formProvider.forms.length,
-                    (index) => formCard(context,
-                        form: formProvider.forms[index], index: index),
+                    (index) => formCard(context, form: formProvider.forms[index], index: index),
                   ),
                 ),
               ),

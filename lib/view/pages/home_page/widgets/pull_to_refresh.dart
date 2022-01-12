@@ -11,8 +11,7 @@ class PullToRefresh extends StatefulWidget {
 }
 
 class _PullToRefreshState extends State<PullToRefresh> {
-  final RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
+  final RefreshController _refreshController = RefreshController(initialRefresh: false);
 
   @override
   Widget build(BuildContext context) {

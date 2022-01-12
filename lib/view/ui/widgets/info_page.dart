@@ -6,12 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-Widget infoPage(BuildContext context,
-        {required String header,
-        required String content,
-        required String svgPath,
-        bool last = false}) =>
-    Padding(
+Widget infoPage(BuildContext context, {required String header, required String content, required String svgPath, bool last = false}) => Padding(
       padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding * 2),
       child: SingleChildScrollView(
         child: Column(
@@ -21,15 +16,11 @@ Widget infoPage(BuildContext context,
             const SizedBox(
               height: kDefaultPadding * 2,
             ),
-            Text(header,
-                style: Theme.of(context).textTheme.headline1,
-                textAlign: TextAlign.center),
+            Text(header, style: Theme.of(context).textTheme.headline1, textAlign: TextAlign.center),
             const SizedBox(
               height: kDefaultPadding,
             ),
-            Text(content,
-                style: Theme.of(context).textTheme.bodyText2,
-                textAlign: TextAlign.center),
+            Text(content, style: Theme.of(context).textTheme.bodyText2, textAlign: TextAlign.center),
             if (last)
               Column(
                 children: [
@@ -39,8 +30,7 @@ Widget infoPage(BuildContext context,
                   MaterialButton(
                     color: kPrimaryColor,
                     onPressed: () async {
-                      SharedPreferences pref =
-                          await SharedPreferences.getInstance();
+                      SharedPreferences pref = await SharedPreferences.getInstance();
                       await pref.setBool('firstLaunch', false);
                       await FirebaseMessaging.instance.requestPermission();
                       Navigator.of(context).pushReplacementNamed(App.routeName);

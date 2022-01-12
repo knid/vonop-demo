@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vonop/core/init/provider/form/form_provider.dart';
-import 'package:vonop/models/form/form.dart' as model;
 import 'widgets/info_card.dart';
 import 'widgets/last_login_card.dart';
 import '../forms_page/forms_page.dart';

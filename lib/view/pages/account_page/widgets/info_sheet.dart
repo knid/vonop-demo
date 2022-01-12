@@ -12,8 +12,7 @@ Widget infoSheet(String accountId) => Padding(
             margin: const EdgeInsets.only(top: kDefaultPadding / 2),
             height: 5,
             width: 50,
-            decoration: BoxDecoration(
-                color: Colors.grey, borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(color: Colors.grey, borderRadius: BorderRadius.circular(10)),
           ),
           Padding(
             padding: const EdgeInsets.all(kDefaultPadding),
@@ -38,9 +37,7 @@ Widget infoSheet(String accountId) => Padding(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("hepsiburada.com",
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.montserrat()),
+                            Text("hepsiburada.com", overflow: TextOverflow.ellipsis, style: GoogleFonts.montserrat()),
                           ],
                         ),
                       ],
@@ -66,8 +63,7 @@ Widget infoSheet(String accountId) => Padding(
                     const SizedBox(
                       width: kDefaultPadding,
                     ),
-                    Text("sinan_kanidagli@hotmail.com",
-                        style: GoogleFonts.montserrat())
+                    Text("sinan_kanidagli@hotmail.com", style: GoogleFonts.montserrat())
                   ],
                 ),
                 const SizedBox(
@@ -103,8 +99,7 @@ Widget infoSheet(String accountId) => Padding(
                     ),
                     Text(
                       "06/9/2021",
-                      style: GoogleFonts.montserrat(
-                          fontWeight: FontWeight.w600, color: Colors.grey),
+                      style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, color: Colors.grey),
                     ),
                   ],
                 ),
@@ -116,8 +111,7 @@ Widget infoSheet(String accountId) => Padding(
                     ),
                     Text(
                       "11/9/2021",
-                      style: GoogleFonts.montserrat(
-                          fontWeight: FontWeight.w600, color: Colors.grey),
+                      style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, color: Colors.grey),
                     ),
                   ],
                 )

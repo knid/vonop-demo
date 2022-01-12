@@ -4,9 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/constants/view/view_constants.dart';
 import '../../../../core/init/provider/page/page_provider.dart';
 
-Widget bottomNavigationBarItem(BuildContext context,
-        {required String routeName, required Icon icon, String tooltip = ""}) =>
-    SizedBox(
+Widget bottomNavigationBarItem(BuildContext context, {required String routeName, required Icon icon, String tooltip = ""}) => SizedBox(
       height: 55,
       child: Column(
         children: [
@@ -26,8 +24,7 @@ Widget bottomNavigationBarItem(BuildContext context,
               color: kPrimaryColor,
               borderRadius: BorderRadius.circular(5),
               boxShadow: const [
-                BoxShadow(
-                    offset: Offset(0, 5), color: kPrimaryColor, blurRadius: 10),
+                BoxShadow(offset: Offset(0, 5), color: kPrimaryColor, blurRadius: 10),
               ],
             ),
           )

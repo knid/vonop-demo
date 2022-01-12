@@ -69,8 +69,7 @@ class _InputFieldState extends State<InputField> {
             maxLines: widget.maxLines,
             maxLength: widget.maxLength,
             validator: widget.validator,
-            buildCounter: (context,
-                {required currentLength, required isFocused, maxLength}) {
+            buildCounter: (context, {required currentLength, required isFocused, maxLength}) {
               if (focused != isFocused) {
                 Future.delayed(Duration.zero, () {
                   setState(() {
@@ -100,8 +99,7 @@ class _InputFieldState extends State<InputField> {
               ),
               child: Text(
                 "$textLength/${widget.maxLength}",
-                style:
-                    GoogleFonts.montserrat(color: Colors.white, fontSize: 10),
+                style: GoogleFonts.montserrat(color: Colors.white, fontSize: 10),
               ),
             ),
           )
