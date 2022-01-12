@@ -5,17 +5,22 @@ enum APIErrorType {
   INCORRECT_CREDENTIALS,
   NOT_FOUND,
   PERMISSION_DENIED,
+  FORM_NAME_EXIST,
   UNKNOWN,
 }
 
 class APIError implements Exception {
   APIErrorType type;
-  Response response;
+  Response? response;
 
-  APIError(this.type, this.response);
+  APIError(this.type, [this.response]);
 
   @override
   String toString() {
-    return "\nAPIError: $type\nDetail: ${response.data['detail']}\n";
+    String string = "\nAPIError: $type";
+    string += response != null
+        ? "\nDetail: ${response!.data['detail']}\n"
+        : "[Response not found]";
+    return string;
   }
 }
