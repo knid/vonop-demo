@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vonop/view/pages/scanner.dart';
+import '../../pages/scanner.dart';
 
 import '../../../core/constants/view/view_constants.dart';
 

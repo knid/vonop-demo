@@ -1,4 +1,4 @@
-import 'package:vonop/core/base/notifier/base_data_notifier.dart';
+import '../../../base/notifier/base_data_notifier.dart';
 
 import '../../api/form/api_form_service.dart';
 import '../../locator/locator.dart';
@@ -41,6 +41,7 @@ class FormProvider extends BaseDataNotifier<model.Form> {
     APIFormService apiFormService = getIt<APIFormService>();
     model.Form form = await apiFormService.update(id, data);
     await getAll();
+    print(data.phoneNumber);
     return form;
   }
 

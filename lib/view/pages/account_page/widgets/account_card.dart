@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'info_sheet.dart';
-import '../../../ui/styles/card_decoration.dart';
 import '../../../../core/constants/view/view_constants.dart';
+import '../../../ui/styles/card_decoration.dart';
+import 'info_sheet.dart';
 
 Widget accountCard(context, accountId) => GestureDetector(
       onTap: () {
@@ -44,7 +44,8 @@ Widget accountCard(context, accountId) => GestureDetector(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("hepsiburada.com", overflow: TextOverflow.ellipsis, style: GoogleFonts.montserrat()),
+                        Text("hepsiburada.com",
+                            overflow: TextOverflow.ellipsis, style: GoogleFonts.montserrat()),
                         Text(
                           "sinan_kanidagli@hotmail.com",
                           overflow: TextOverflow.ellipsis,

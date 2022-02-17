@@ -3,7 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../core/constants/view/view_constants.dart';
 
-Widget formButton({required String text, required Icon icon, required VoidCallback onPress}) => GestureDetector(
+Widget formButton({required String text, required Icon icon, required VoidCallback onPress}) =>
+    GestureDetector(
       onTap: onPress,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -1,14 +1,22 @@
 import 'package:dio/dio.dart';
-import 'package:vonop/core/constants/enums/api_error_enum.dart';
+import '../../../base/model/base_error.dart';
+import '../errors/api_error.dart';
+import '../errors/error_type_enum.dart';
 
-import '../../../base/service/api/base_api_data_service.dart';
-import '../../../constants/enums/http_response_status_enum.dart';
-import '../../network/network_manager.dart';
 import '../../../../../models/form/form.dart';
+import '../../../base/service/api/base_api_data_service.dart';
+import '../../../constants/enums/http_request_enum.dart';
+import '../../../constants/enums/http_response_status_enum.dart';
 import '../../../extension/http_response_status_extension.dart';
+import '../../locator/locator.dart';
+import '../../network/network_manager.dart';
+
+import 'dart:io';
 
 class APIFormService implements BaseAPIDataService<Form> {
   static const endPoint = "/user/forms/";
+
+  final NetworkManager _networkManager = getIt<NetworkManager>();
 
   ///Add register form user account
   ///
@@ -19,43 +27,43 @@ class APIFormService implements BaseAPIDataService<Form> {
   @override
   Future<Form> add(Form data) async {
     if (await _checkFormNameExists(data)) {
-      throw APIError(APIErrorType.FORM_NAME_EXIST);
+      throw APIError(type: APIErrorType.FORM_NAME_EXIST, message: "Form Name Exists");
     }
-
     try {
-      final Response response =
-          await NetworkManager.instance.dio.post(endPoint, data: data.toJson());
-      return Form.fromJson(response.data);
+      final response = await _networkManager.coreDio.makeRequest<Form, Form>(endPoint,
+          data: data.toJson(), method: HttpTypes.POST, parseModel: Form());
+      return response;
     } catch (e) {
       NetworkManager.handleError(e);
     }
     //If the above return keyword doesn't work, it will throw an error
-    throw Exception();
+    throw BaseError(code: 0, message: "Unknown Error");
   }
 
   @override
   Future<Form> update(String id, Form newData) async {
-    if (await _checkFormNameExists(newData)) {
-      throw APIError(APIErrorType.FORM_NAME_EXIST);
-    }
-    final path = endPoint + id;
+    final path = endPoint + id + "/";
     try {
-      final response =
-          await NetworkManager.instance.dio.put(path, data: newData.toJson());
-      return Form.fromJson(response.data);
+      final response = await _networkManager.coreDio.makeRequest<Form, Form>(path,
+          data: newData.toJson(), method: HttpTypes.PUT, parseModel: Form());
+      return response;
     } catch (e) {
+      if (e is DioError) {
+        print(e.response?.data);
+      }
       NetworkManager.handleError(e);
     }
     //If the above return keyword doesn't work, it will throw an error
-    throw Exception();
+    throw BaseError(code: 0, message: "Unknown Error");
   }
 
   @override
   Future<bool> delete(String id) async {
     try {
       final path = endPoint + id + "/";
-      final Response response = await NetworkManager.instance.dio.delete(path);
-      if (response.statusCode == HttpResponeStatus.NO_CONTENT.code) {
+      final Response response = await _networkManager.coreDio
+          .makeRequest<dynamic, Form>(path, method: HttpTypes.DELETE, parseModel: Form());
+      if (response.statusCode == HttpStatus.noContent) {
         return true;
       }
       return false;
@@ -63,30 +71,21 @@ class APIFormService implements BaseAPIDataService<Form> {
       NetworkManager.handleError(e);
     }
     //If the above return keyword doesn't work, it will throw an error
-    throw Exception();
+    throw BaseError(code: 0, message: "Unknown Error");
   }
 
   @override
   Future<List<Form>> fetchAll() async {
-    List<Form> forms = [];
     try {
-      final response = (await NetworkManager.instance.dio.get(endPoint));
-      if (response.statusCode == HttpResponeStatus.OK.code) {
-        final data = response.data;
-        if (data is List) {
-          for (var i in data) {
-            final Form form = Form.fromJson(i);
-            forms.add(form);
-          }
-        }
-      }
-      return forms;
-      // ignore: empty_catches
+      final response = await _networkManager.coreDio
+          .makeRequest<List<Form>, Form>(endPoint, method: HttpTypes.GET, parseModel: Form());
+      return response;
     } catch (e) {
+      print(e);
       NetworkManager.handleError(e);
     }
     //If the above return keyword doesn't work, it will throw an error
-    throw Exception();
+    throw BaseError(code: 0, message: "Unknown Error");
   }
 
   ///Check if formName exists.

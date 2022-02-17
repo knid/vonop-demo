@@ -1,12 +1,18 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:vonop/core/init/app/app.dart';
-import 'package:vonop/core/constants/view/view_constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-Widget infoPage(BuildContext context, {required String header, required String content, required String svgPath, bool last = false}) => Padding(
+import '../../../core/constants/view/view_constants.dart';
+import '../../../core/init/app/app.dart';
+
+Widget infoPage(BuildContext context,
+        {required String header,
+        required String content,
+        required String svgPath,
+        bool last = false}) =>
+    Padding(
       padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding * 2),
       child: SingleChildScrollView(
         child: Column(
@@ -20,7 +26,8 @@ Widget infoPage(BuildContext context, {required String header, required String c
             const SizedBox(
               height: kDefaultPadding,
             ),
-            Text(content, style: Theme.of(context).textTheme.bodyText2, textAlign: TextAlign.center),
+            Text(content,
+                style: Theme.of(context).textTheme.bodyText2, textAlign: TextAlign.center),
             if (last)
               Column(
                 children: [

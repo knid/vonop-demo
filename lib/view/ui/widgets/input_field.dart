@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:vonop/view/ui/styles/input_decoration.dart';
 
 import '../../../core/constants/view/view_constants.dart';
+import '../styles/input_decoration.dart';
 
 class InputField extends StatefulWidget {
   const InputField(

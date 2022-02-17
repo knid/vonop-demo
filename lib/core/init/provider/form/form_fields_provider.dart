@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:vonop/core/constants/app/app_constants.dart';
-import 'package:vonop/view/ui/widgets/input_field.dart';
+
 import '../../../../models/form/form.dart' as model;
+import '../../../../view/ui/widgets/input_field.dart';
+import '../../../constants/app/app_constants.dart';
 
 class FormFieldsProvider extends ChangeNotifier {
   FormFieldsProvider() {
@@ -12,7 +13,7 @@ class FormFieldsProvider extends ChangeNotifier {
   }
   factory FormFieldsProvider.from(model.Form form) {
     var formFieldsProvider = FormFieldsProvider()
-      ..textEditingControllers['form_name']?.text = form.formName
+      ..textEditingControllers['form_name']?.text = form.formName ?? ""
       ..textEditingControllers['name']?.text = form.firstName ?? ""
       ..textEditingControllers['last_name']?.text = form.lastName ?? ""
       ..textEditingControllers['username']?.text = form.username ?? ""
@@ -24,15 +25,23 @@ class FormFieldsProvider extends ChangeNotifier {
       ..textEditingControllers['address']?.text = form.address ?? ""
       ..textEditingControllers['password']?.text = form.password ?? "";
 
-    formFieldsProvider._structure['name'] = form.firstName != null ? formFieldsProvider.formName : null;
-    formFieldsProvider._structure['username'] = form.firstName != null ? formFieldsProvider.formName : null;
-    formFieldsProvider._structure['email'] = form.firstName != null ? formFieldsProvider.formName : null;
-    formFieldsProvider._structure['phone_number'] = form.firstName != null ? formFieldsProvider.formName : null;
-    formFieldsProvider._structure['birthday'] = form.firstName != null ? formFieldsProvider.formName : null;
-    formFieldsProvider._structure['gender'] = form.firstName != null ? formFieldsProvider.formName : null;
-    formFieldsProvider._structure['identity_id'] = form.firstName != null ? formFieldsProvider.formName : null;
-    formFieldsProvider._structure['address'] = form.firstName != null ? formFieldsProvider.formName : null;
-    formFieldsProvider._structure['password'] = form.firstName != null ? formFieldsProvider.formName : null;
+    formFieldsProvider._structure['name'] =
+        form.firstName != null ? formFieldsProvider.nameAndLastName : null;
+    formFieldsProvider._structure['username'] =
+        form.username != null ? formFieldsProvider.username : null;
+    formFieldsProvider._structure['email'] = form.email != null ? formFieldsProvider.email : null;
+    formFieldsProvider._structure['phone_number'] =
+        form.phoneNumber != null ? formFieldsProvider.phoneNumber : null;
+    formFieldsProvider._structure['birthday'] =
+        form.birthday != null ? formFieldsProvider.birthday : null;
+    formFieldsProvider._structure['gender'] =
+        form.gender != null ? formFieldsProvider.gender : null;
+    formFieldsProvider._structure['identity_id'] =
+        form.identityId != null ? formFieldsProvider.identityNo : null;
+    formFieldsProvider._structure['address'] =
+        form.address != null ? formFieldsProvider.address : null;
+    formFieldsProvider._structure['password'] =
+        form.password != null ? formFieldsProvider.password : null;
 
     return formFieldsProvider;
   }
@@ -69,10 +78,16 @@ class FormFieldsProvider extends ChangeNotifier {
 
   Widget _buildFormNameField([TextEditingController? textEditingController]) {
     textEditingController ??= textEditingControllers['form_name'];
-    return InputField(labelText: "*Form İsmi", maxLength: 20, enableFloatingLabelText: true, textEditingController: textEditingController);
+    return InputField(
+        labelText: "*Form İsmi",
+        maxLength: 20,
+        enableFloatingLabelText: true,
+        textEditingController: textEditingController);
   }
 
-  Widget _buildNameAndLastNameField([TextEditingController? textEditingControllerName, TextEditingController? textEditingControllerLastName]) {
+  Widget _buildNameAndLastNameField(
+      [TextEditingController? textEditingControllerName,
+      TextEditingController? textEditingControllerLastName]) {
     textEditingControllerName ??= textEditingControllers['name'];
     textEditingControllerLastName ??= textEditingControllers['last_name'];
 

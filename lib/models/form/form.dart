@@ -1,23 +1,25 @@
-class Form {
-  String? formId;
-  String formName;
-  String? firstName;
-  String? lastName;
-  String? username;
-  String? email;
-  String? phoneNumber;
-  String? birthday;
-  String? gender;
-  String? identityId;
-  String? country;
-  String? city;
-  String? district;
-  String? postCode;
-  String? address;
-  String? password;
+import '../../core/base/model/base_model.dart';
+
+class Form implements IBaseModel<Form> {
+  final String? formId;
+  final String? formName;
+  final String? firstName;
+  final String? lastName;
+  final String? username;
+  final String? email;
+  final String? phoneNumber;
+  final String? birthday;
+  final String? gender;
+  final String? identityId;
+  final String? country;
+  final String? city;
+  final String? district;
+  final String? postCode;
+  final String? address;
+  final String? password;
 
   Form({
-    required this.formName,
+    this.formName,
     this.formId,
     this.firstName,
     this.lastName,
@@ -35,7 +37,8 @@ class Form {
     this.password,
   });
 
-  factory Form.fromJson(Map<String, dynamic> json) => Form(
+  @override
+  Form fromJson(Map<String, dynamic> json) => Form(
         formId: json['form_id'],
         formName: json['form_name'],
         firstName: json['first_name'],
@@ -54,7 +57,8 @@ class Form {
         password: json['password'],
       );
 
-  Map<String, Object?> toJson() => {
+  @override
+  Map<String, dynamic> toJson() => {
         "form_name": formName,
         "first_name": firstName,
         "last_name": lastName,

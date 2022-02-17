@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:vonop/core/constants/view/view_constants.dart';
+
+import '../../../core/constants/view/view_constants.dart';
 
 final BoxDecoration inputDecoration = BoxDecoration(
   color: Colors.white,

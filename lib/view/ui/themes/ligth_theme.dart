@@ -13,11 +13,9 @@ ThemeData kThemeData = ThemeData(
   ),
   primaryColor: kPrimaryColor,
   textTheme: TextTheme(
-    headline1: GoogleFonts.montserrat(
-      color: Colors.black,
-      fontSize: 32,
-    ),
-    headline2: GoogleFonts.montserrat(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+    headline1: GoogleFonts.montserrat(color: Colors.black, fontSize: 32),
+    headline2:
+        GoogleFonts.montserrat(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
     headline3: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 20),
     headline4: GoogleFonts.montserrat(color: Colors.white, fontSize: 16),
     headline5: GoogleFonts.montserrat(color: Colors.grey.shade400, fontSize: 14),

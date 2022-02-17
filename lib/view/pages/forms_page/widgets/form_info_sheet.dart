@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:vonop/core/constants/view/view_constants.dart';
-import 'package:vonop/core/extension/map_extension.dart';
-import 'package:vonop/core/init/provider/form/form_fields_provider.dart';
-import 'package:vonop/core/init/provider/form/form_provider.dart';
-import 'package:vonop/view/pages/forms_page/widgets/add_field_actions.dart';
-import 'package:vonop/view/ui/widgets/platform_specific/action_sheet/action_modal_bottom_sheet.dart';
-import 'package:vonop/view/ui/widgets/platform_specific/action_sheet/sheet_action.dart';
+import '../../../../core/constants/view/view_constants.dart';
+import '../../../../core/extension/map_extension.dart';
+import '../../../../core/init/provider/form/form_fields_provider.dart';
+import '../../../../core/init/provider/form/form_provider.dart';
+import 'add_field_actions.dart';
+import '../../../ui/widgets/platform_specific/action_sheet/action_modal_bottom_sheet.dart';
+import '../../../ui/widgets/platform_specific/action_sheet/sheet_action.dart';
 
-import 'package:vonop/models/form/form.dart' as model;
+import '../../../../models/form/form.dart' as model;
 
-Widget formInfoSheet(BuildContext context, {Form? initialData}) {
+Widget formInfoSheet(BuildContext context, {model.Form? initialData}) {
   return GestureDetector(
     onTap: () {
       FocusScope.of(context).unfocus();
     },
     child: ChangeNotifierProvider<FormFieldsProvider>(
-      create: (context) => FormFieldsProvider(),
+      create: (context) => initialData == null ? FormFieldsProvider() : FormFieldsProvider.from(initialData),
       builder: (context, child) {
         FormFieldsProvider _formFieldsProvider = context.read<FormFieldsProvider>();
         _formFieldsProvider.structure['form_name'] = _formFieldsProvider.formName;
+
+        // print(_formFieldsProvider.structure);
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -44,7 +46,7 @@ Widget formInfoSheet(BuildContext context, {Form? initialData}) {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Yeni Form",
+                              initialData != null ? " Düzenle" : "Yeni Form",
                               style: Theme.of(context).textTheme.headline1,
                             ),
                             GestureDetector(
@@ -78,23 +80,32 @@ Widget formInfoSheet(BuildContext context, {Form? initialData}) {
                         const SizedBox(
                           height: kDefaultPadding,
                         ),
-                        const Text("*Zorunlu alanlar"),
                         MaterialButton(
                           color: kPrimaryColor,
-                          onPressed: () {
+                          onPressed: () async {
                             FormFieldsProvider formFieldsProvider = context.read<FormFieldsProvider>();
                             Map<String, Widget?> structure = formFieldsProvider.structure;
                             Map<String, dynamic> json = {};
+
+                            if (structure['name'] != null) {
+                              json['first_name'] = formFieldsProvider.textEditingControllers['name']!.text;
+                              json['last_name'] = formFieldsProvider.textEditingControllers['last_name']!.text;
+                            }
+
                             for (var key in structure.keys) {
                               if (structure[key] != null) {
                                 json[key] = formFieldsProvider.textEditingControllers[key]?.text;
                               }
                             }
-                            if (structure['name'] != null) {
-                              json['first_name'] = formFieldsProvider.textEditingControllers['name']!.text;
-                              json['last_name'] = formFieldsProvider.textEditingControllers['last_name']!.text;
+
+                            if (initialData == null) {
+                              await context.read<FormProvider>().add(model.Form().fromJson(json));
+                            } else {
+                              if (initialData.formId != null) {
+                                await context.read<FormProvider>().update(initialData.formId!, model.Form().fromJson(json));
+                              }
                             }
-                            context.read<FormProvider>().add(model.Form.fromJson(json));
+
                             Navigator.of(context).pop();
                           },
                           child: Text(
@@ -102,14 +113,21 @@ Widget formInfoSheet(BuildContext context, {Form? initialData}) {
                             style: Theme.of(context).textTheme.headline4,
                           ),
                         ),
-                        MaterialButton(
-                          color: Colors.red,
-                          onPressed: () {},
-                          child: Text(
-                            "Sil",
-                            style: Theme.of(context).textTheme.headline4,
+                        if (initialData != null)
+                          MaterialButton(
+                            color: Colors.red,
+                            onPressed: () async {
+                              if (initialData.formId != null) {
+                                await context.read<FormProvider>().delete(initialData.formId!);
+                                await context.read<FormProvider>().getAll();
+                                Navigator.of(context).pop();
+                              }
+                            },
+                            child: Text(
+                              "Sil",
+                              style: Theme.of(context).textTheme.headline4,
+                            ),
                           ),
-                        ),
                       ],
                     ),
                   ),

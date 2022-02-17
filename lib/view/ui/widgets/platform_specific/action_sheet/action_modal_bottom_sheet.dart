@@ -2,8 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:vonop/core/constants/view/view_constants.dart';
-import 'package:vonop/view/ui/widgets/platform_specific/action_sheet/sheet_action.dart';
+
+import '../../../../../core/constants/view/view_constants.dart';
+import 'sheet_action.dart';
 
 ///Show platform specific modal bottom sheet with actions
 ///
@@ -38,21 +39,31 @@ void showPlatformSpecificModalBottomSheetWithActions(
   }
 }
 
-void _cupertino(BuildContext context, {Widget? title, Widget? description, required List<SheetAction> actions, SheetAction? cancelButton}) {
+void _cupertino(BuildContext context,
+    {Widget? title,
+    Widget? description,
+    required List<SheetAction> actions,
+    SheetAction? cancelButton}) {
   showCupertinoModalPopup<void>(
     context: context,
     builder: (context) {
       return CupertinoActionSheet(
         title: title,
         message: description,
-        actions: actions.map((e) => CupertinoActionSheetAction(onPressed: e.onPressed, child: e.child)).toList(),
-        cancelButton: cancelButton == null ? null : CupertinoActionSheetAction(onPressed: cancelButton.onPressed, child: cancelButton.child),
+        actions: actions
+            .map((e) => CupertinoActionSheetAction(onPressed: e.onPressed, child: e.child))
+            .toList(),
+        cancelButton: cancelButton == null
+            ? null
+            : CupertinoActionSheetAction(
+                onPressed: cancelButton.onPressed, child: cancelButton.child),
       );
     },
   );
 }
 
-void _material(BuildContext context, {Widget? title, Widget? description, required List<SheetAction> actions}) {
+void _material(BuildContext context,
+    {Widget? title, Widget? description, required List<SheetAction> actions}) {
   showModalBottomSheet(
       context: context,
       builder: (context) {
@@ -80,7 +91,9 @@ void _material(BuildContext context, {Widget? title, Widget? description, requir
                               onTap: e.onPressed,
                               child: Row(
                                 children: [
-                                  Padding(padding: const EdgeInsets.all(kDefaultPadding), child: e.child),
+                                  Padding(
+                                      padding: const EdgeInsets.all(kDefaultPadding),
+                                      child: e.child),
                                 ],
                               ),
                             ))

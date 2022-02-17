@@ -1,6 +1,13 @@
-class Session {
-  String projectId;
-  String sessionId;
+import 'package:vonop/core/base/model/base_model.dart';
 
-  Session(this.projectId, this.sessionId);
+class Session implements IBaseModel<Session> {
+  @override
+  Session fromJson(Map<String, dynamic> json) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    throw UnimplementedError();
+  }
 }

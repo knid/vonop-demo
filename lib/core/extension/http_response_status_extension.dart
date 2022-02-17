@@ -1,4 +1,4 @@
-import 'package:vonop/core/constants/enums/http_response_status_enum.dart';
+import '../constants/enums/http_response_status_enum.dart';
 
 extension HttpResponseExtension on HttpResponeStatus {
   int get code {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vonop/core/init/provider/form/form_fields_provider.dart';
-import 'package:vonop/view/ui/widgets/platform_specific/action_sheet/sheet_action.dart';
+import '../../../../core/init/provider/form/form_fields_provider.dart';
+import '../../../ui/widgets/platform_specific/action_sheet/sheet_action.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/extension/map_extension.dart';
 
@@ -31,11 +31,11 @@ List<SheetAction> sheetActions(BuildContext context) {
           Navigator.pop(context);
         },
       ),
-    if (formFieldsProvider.structure['phoneNumber'] == null)
+    if (formFieldsProvider.structure['phone_number'] == null)
       SheetAction(
         const Text('Telefon Numarası'),
         () {
-          formFieldsProvider.structure = formFieldsProvider.structure.copyWith('phoneNumber', formFieldsProvider.phoneNumber);
+          formFieldsProvider.structure = formFieldsProvider.structure.copyWith('phone_number', formFieldsProvider.phoneNumber);
           Navigator.pop(context);
         },
       ),
@@ -55,11 +55,11 @@ List<SheetAction> sheetActions(BuildContext context) {
           Navigator.pop(context);
         },
       ),
-    if (formFieldsProvider.structure['identityNo'] == null)
+    if (formFieldsProvider.structure['identity_id'] == null)
       SheetAction(
         const Text('Kimlik Numarası'),
         () {
-          formFieldsProvider.structure = formFieldsProvider.structure.copyWith('identityNo', formFieldsProvider.identityNo);
+          formFieldsProvider.structure = formFieldsProvider.structure.copyWith('identity_id', formFieldsProvider.identityNo);
           Navigator.pop(context);
         },
       ),

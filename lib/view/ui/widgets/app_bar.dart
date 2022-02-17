@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vonop/core/constants/view/view_constants.dart';
+import '../../../core/constants/view/view_constants.dart';
 
 AppBar appBar(BuildContext context, String headerText) => AppBar(
       centerTitle: false,

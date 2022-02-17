@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vonop/core/constants/map/map_constants.dart';
+import '../../../core/constants/map/map_constants.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';

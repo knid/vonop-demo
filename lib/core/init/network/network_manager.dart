@@ -1,38 +1,41 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:vonop/core/constants/enums/api_error_enum.dart';
+import '../../base/model/base_model.dart';
+import '../../constants/enums/http_request_enum.dart';
+import '../api/errors/api_error.dart';
+import '../api/errors/error_type_enum.dart';
+import '../../extension/network_extension.dart';
+import 'options.dart';
+import 'core_dio.dart';
 
 //import '../../constants/enums/locale_keys_enum.dart';
 
 class NetworkManager {
-  static NetworkManager? _instance;
-  static NetworkManager get instance {
-    _instance ??= NetworkManager._init();
-    return _instance!;
-  }
-
   late final Dio dio;
-  NetworkManager._init() {
-    final baseOptions = BaseOptions(
-      baseUrl: 'http://192.168.1.111:9000',
-      headers: {
-        HttpHeaders.authorizationHeader:
-            'Token 10d8d81572a77bf174ea2f6758524ffa9b007ccc'
-      },
-      connectTimeout: 1000 * 10,
-    );
-    dio = Dio(baseOptions);
+  late final CoreDio coreDio;
+
+  NetworkManager() {
+    dio = Dio(baseNetworkManagerOptions);
+    coreDio = CoreDio(baseNetworkManagerOptions);
   }
 
   static handleError(Object e) {
     if (e is DioError) {
-      final Response? response = (e).response;
-      if (response != null) {
-        final rawData = response.data;
-        if (rawData['detail'] == 'Incorrect authentication credentials.') {
-          throw APIError(APIErrorType.INCORRECT_CREDENTIALS, response);
+      if (e.type == DioErrorType.response) {
+        if (e.response?.statusCode == 404) {
+          throw APIError(
+            code: e.response?.statusCode,
+            type: APIErrorType.NOT_FOUND,
+            message: e.response?.data['detail'],
+          );
         }
+      } else if (e.type == DioErrorType.other) {
+        if (e.message.contains("SocketException")) {
+          print(e);
+          throw "int yok";
+        }
+        print(e);
       }
     }
   }

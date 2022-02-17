@@ -1,7 +1,7 @@
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
-import 'package:vonop/core/init/provider/form/form_provider.dart';
 
+import 'form/form_provider.dart';
 import 'page/page_provider.dart';
 
 class ApplicationProvider {
